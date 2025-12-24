@@ -8,11 +8,9 @@ export default class CleanupHelper {
    * @param ast The AST.
    */
   static cleanup(ast: Shift.Script | Shift.Module): void {
-    const self = this;
-
     traverse(ast, {
       enter(node: Shift.Node, parent: Shift.Node) {
-        if (self.isEmptyVariableDeclarationStatement(node)) {
+        if (CleanupHelper.isEmptyVariableDeclarationStatement(node)) {
           TraversalHelper.removeNode(parent, node);
         }
       },

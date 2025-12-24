@@ -3,10 +3,8 @@
  * All credit goes to jsoverson
  */
 
-import estraverse from "./estraverse";
+import * as environment from "./estraverse";
 import Spec from "./shiftSpec";
-
-const environment = estraverse.cloneEnvironment();
 
 Object.keys(environment.Syntax)
   .filter((key) => key !== "Property")
@@ -31,5 +29,6 @@ Object.assign(
   }, {}),
 );
 
-const traverse = environment.traverse as any;
+const traverse = environment.traverse;
+
 export { traverse };
