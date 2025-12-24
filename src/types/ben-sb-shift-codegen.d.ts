@@ -1,1 +1,1 @@
-declare module 'ben-sb-shift-codegen';
+declare module "ben-sb-shift-codegen";
