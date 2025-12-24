@@ -139,7 +139,6 @@ export interface VisitorKeys extends Record<NodeType, string[]> {}
 
 export interface Visitor {
   enter?:
-    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
     | ((
         this: Controller,
         node: ESTree.Node,
@@ -148,7 +147,6 @@ export interface Visitor {
     | undefined;
 
   leave?:
-    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
     | ((
         this: Controller,
         node: ESTree.Node,

@@ -1,7 +1,97 @@
-import Node from "./node";
-import Edge from "./edge";
+export class Edge {
+  #name: string;
+  #source: Node;
+  #target: Node;
 
-export default class Graph {
+  /**
+   * Creates a new edge.
+   * @param source The node the edge originates from.
+   * @param target The node the edge ends at.
+   */
+  constructor(source: Node, target: Node) {
+    this.#name = `${source.id} -> ${target.id}`;
+    this.#source = source;
+    this.#target = target;
+
+    this.source.outgoingEdges.push(this);
+    this.target.incomingEdges.push(this);
+  }
+
+  /**
+   * Returns the name of the edge.
+   */
+  get name(): string {
+    return this.#name;
+  }
+
+  /**
+   * Returns the source node of the edge.
+   */
+  get source(): Node {
+    return this.#source;
+  }
+
+  /**
+   * Returns the target node of the edge.
+   */
+  get target(): Node {
+    return this.#target;
+  }
+}
+
+export class Node {
+  #id: string;
+
+  #incomingEdges: Edge[];
+  #outgoingEdges: Edge[];
+
+  /**
+   * Creates a new node.
+   * @param name The name of the node.
+   */
+  constructor(id: string) {
+    this.#id = id;
+    this.#incomingEdges = [];
+    this.#outgoingEdges = [];
+  }
+
+  /**
+   * Returns the name of the node.
+   */
+  get id(): string {
+    return this.#id;
+  }
+
+  /**
+   * Returns the incoming edges of the node.
+   */
+  get incomingEdges(): Edge[] {
+    return this.#incomingEdges;
+  }
+
+  /**
+   * Returns the outgoing edges of the node.
+   */
+  get outgoingEdges(): Edge[] {
+    return this.#outgoingEdges;
+  }
+
+  /**
+   * Returns the number of edges ending on this node.
+   */
+  get inDegree(): number {
+    return this.incomingEdges.length;
+  }
+
+  /**
+   * Returns the number of edges originating from this node.
+   */
+  get outDegree(): number {
+    return this.outgoingEdges.length;
+  }
+}
+
+export class Graph {
   nodes: Node[];
   edges: Edge[];
 

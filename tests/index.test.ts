@@ -37,4 +37,10 @@ describe("deobfuscate", () => {
     const result = deobfuscate(input);
     expect(result).toMatchSnapshot();
   });
+
+  test("obfuscator", () => {
+    const input = loadFixture("obfuscator");
+    const result = deobfuscate(input);
+    expect(result).toMatchSnapshot();
+  });
 });

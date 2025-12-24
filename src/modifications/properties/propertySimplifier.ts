@@ -17,24 +17,22 @@ export default class PropertySimplifier extends Modification {
    * Executes the modification.
    */
   execute(): void {
-    this.simplifyComputedMembers(this.ast);
+    PropertySimplifier.simplifyComputedMembers(this.ast);
   }
 
   /**
    * Simplifies all computed members to static members within a given node.
    * @param node The AST node.
    */
-  private simplifyComputedMembers(node: Shift.Node): void {
-    const self = this;
-
+  private static simplifyComputedMembers(node: Shift.Node): void {
     traverse(node, {
       enter(node: Shift.Node, parent: Shift.Node) {
-        if (self.isStringComputedMember(node)) {
+        if (PropertySimplifier.isStringComputedMember(node)) {
           const replacement = new Shift.StaticMemberExpression({
             object: (node as any).object,
             property: (node as any).expression.value,
           });
-          self.simplifyComputedMembers(replacement);
+          PropertySimplifier.simplifyComputedMembers(replacement);
 
           if (isValid(replacement)) {
             TraversalHelper.replaceNode(parent, node, replacement);
@@ -49,7 +47,7 @@ export default class PropertySimplifier extends Modification {
    * and should be converted to a static member expression.
    * @param node The AST node.
    */
-  private isStringComputedMember(node: Shift.Node): boolean {
+  private static isStringComputedMember(node: Shift.Node): boolean {
     return (
       (node as any).object &&
       /.*Expression/.test((node as any).object.type) &&
