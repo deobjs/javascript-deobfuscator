@@ -2,15 +2,15 @@
     "name": "js-deobfuscator",
     "version": "1.1.7",
     "description": "",
-    "main": "dist/index.js",
+    "license": "ISC",
+    "author": "",
     "bin": "dist/cli.js",
+    "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
         "start": "tsc && node dist/cli.js",
         "format": "bunx oxfmt"
     },
-    "author": "",
-    "license": "ISC",
     "dependencies": {
         "ben-sb-shift-codegen": "^8.0.0",
         "commander": "^9.4.0",

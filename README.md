@@ -13,12 +13,12 @@ If you would like to discuss/learn about JavaScript obfuscation and deobfuscatio
 
 ## Features
 
--   Unpacks arrays containing literals (strings, numbers etc) and replaces all references to them
--   Removes simple proxy functions (calls to another function), array proxy functions and arithmetic proxy functions (binary expressions)
--   Simplifies arithmetic expressions
--   Simplifies string concatenation
--   Renames unreadable hexadecimal identifiers (e.g. \_0xca830a)
--   Converts computed to static member expressions and beautifies the code
+- Unpacks arrays containing literals (strings, numbers etc) and replaces all references to them
+- Removes simple proxy functions (calls to another function), array proxy functions and arithmetic proxy functions (binary expressions)
+- Simplifies arithmetic expressions
+- Simplifies string concatenation
+- Renames unreadable hexadecimal identifiers (e.g. \_0xca830a)
+- Converts computed to static member expressions and beautifies the code
 
 ## Examples
 

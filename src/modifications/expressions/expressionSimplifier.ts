@@ -91,10 +91,15 @@ export default class ExpressionSimplifier extends Modification {
      * Attempts to simplify a unary expression node.
      * @param expression The unary expression node.
      */
-    private simplifyUnaryExpression(expression: Shift.UnaryExpression): Shift.Expression | undefined {
+    private simplifyUnaryExpression(
+        expression: Shift.UnaryExpression
+    ): Shift.Expression | undefined {
         if (!ExpressionSimplifier.RESOLVABLE_UNARY_OPERATORS.has(expression.operator)) {
             return expression;
-        } else if (expression.operator == '-' && expression.operand.type == 'LiteralNumericExpression') {
+        } else if (
+            expression.operator == '-' &&
+            expression.operand.type == 'LiteralNumericExpression'
+        ) {
             return expression; // avoid trying to simplify negative numbers
         }
 
@@ -116,7 +121,9 @@ export default class ExpressionSimplifier extends Modification {
      * Attempts to simplify a binary expression node.
      * @param expression The binary expression node.
      */
-    private simplifyBinaryExpression(expression: Shift.BinaryExpression): Shift.Expression | undefined {
+    private simplifyBinaryExpression(
+        expression: Shift.BinaryExpression
+    ): Shift.Expression | undefined {
         if (
             !expression.left.type.endsWith('Expression') ||
             !ExpressionSimplifier.RESOLVABLE_BINARY_OPERATORS.has(expression.operator)
@@ -136,7 +143,12 @@ export default class ExpressionSimplifier extends Modification {
                 rightValue
             );
             return this.convertValueToExpression(value);
-        } else if (expression.operator == '-' && right.type == 'UnaryExpression' && right.operator == '-' && right.operand.type == 'LiteralNumericExpression') {
+        } else if (
+            expression.operator == '-' &&
+            right.type == 'UnaryExpression' &&
+            right.operator == '-' &&
+            right.operand.type == 'LiteralNumericExpression'
+        ) {
             // convert (- -a) to +a (as long as a is a number)
             expression.right = right.operand;
             expression.operator = '+';
@@ -233,9 +245,7 @@ export default class ExpressionSimplifier extends Modification {
             case 'LiteralBooleanExpression':
                 return expression.value;
             case 'UnaryExpression':
-                return -this.getResolvableExpressionValue(
-                    expression.operand as Literal
-                );
+                return -this.getResolvableExpressionValue(expression.operand as Literal);
             case 'LiteralNullExpression':
                 return null;
             case 'IdentifierExpression':
@@ -259,7 +269,10 @@ export default class ExpressionSimplifier extends Modification {
             case 'number':
                 return value >= 0
                     ? new Shift.LiteralNumericExpression({ value })
-                    : new Shift.UnaryExpression({ operator: '-', operand: new Shift.LiteralNumericExpression({ value: Math.abs(value) })});
+                    : new Shift.UnaryExpression({
+                          operator: '-',
+                          operand: new Shift.LiteralNumericExpression({ value: Math.abs(value) })
+                      });
             case 'boolean':
                 return new Shift.LiteralBooleanExpression({ value });
             case 'undefined':
@@ -278,7 +291,9 @@ export default class ExpressionSimplifier extends Modification {
     private isResolvableExpression(node: Shift.Node): node is ResolvableExpression {
         return (
             this.isLiteral(node) ||
-            (node.type == 'UnaryExpression' && node.operator == '-' && node.operand.type == 'LiteralNumericExpression') ||
+            (node.type == 'UnaryExpression' &&
+                node.operator == '-' &&
+                node.operand.type == 'LiteralNumericExpression') ||
             (node.type == 'IdentifierExpression' && node.name == 'undefined') ||
             (node.type == 'ArrayExpression' && node.elements.length == 0) ||
             (node.type == 'ObjectExpression' && node.properties.length == 0)
@@ -291,11 +306,20 @@ export default class ExpressionSimplifier extends Modification {
      * @returns Whether.
      */
     private isLiteral(node: Shift.Node): node is Literal {
-        return node.type == 'LiteralNumericExpression' || node.type == 'LiteralStringExpression' || node.type == 'LiteralBooleanExpression' || node.type == 'LiteralNullExpression';
+        return (
+            node.type == 'LiteralNumericExpression' ||
+            node.type == 'LiteralStringExpression' ||
+            node.type == 'LiteralBooleanExpression' ||
+            node.type == 'LiteralNullExpression'
+        );
     }
 }
 
-type Literal = Shift.LiteralNumericExpression | Shift.LiteralStringExpression | Shift.LiteralBooleanExpression | Shift.LiteralNullExpression;
+type Literal =
+    | Shift.LiteralNumericExpression
+    | Shift.LiteralStringExpression
+    | Shift.LiteralBooleanExpression
+    | Shift.LiteralNullExpression;
 type ResolvableExpression =
     | Literal
     | (Shift.UnaryExpression & { operator: '-'; argument: Literal })
