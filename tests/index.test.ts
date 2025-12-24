@@ -25,4 +25,10 @@ describe("deobfuscate", () => {
     const result = deobfuscate(input);
     expect(result).toMatchSnapshot();
   });
+
+  test("string-fromcharcode", () => {
+    const input = loadFixture("string-fromcharcode");
+    const result = deobfuscate(input);
+    expect(result).toMatchSnapshot();
+  });
 });

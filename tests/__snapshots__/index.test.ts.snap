@@ -16,3 +16,8 @@ exports[`deobfuscate xor-string-encoding 1`] = `
 "console.log("Hello World");
 "
 `;
+
+exports[`deobfuscate string-fromcharcode 1`] = `
+"("Hello World");
+"
+`;
