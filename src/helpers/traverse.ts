@@ -32,5 +32,4 @@ Object.assign(
 );
 
 const traverse = environment.traverse as any;
-const replace = environment.replace as any;
-export { traverse, replace };
+export { traverse };
