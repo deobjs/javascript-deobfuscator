@@ -1,4 +1,4 @@
-import type * as ESTree from "estree";
+import type * as Shift from "shift-ast";
 
 export const Syntax: Syntax;
 
@@ -8,17 +8,17 @@ export class Controller {
   /**
    * Traverse the AST.
    */
-  traverse(root: ESTree.Node, visitor: Visitor): void;
+  traverse(root: Shift.Node, visitor: Visitor): void;
 
   /**
    * Traverse and replace the AST.
    */
-  replace(root: ESTree.Node, visitor: Visitor): ESTree.Node;
+  replace(root: Shift.Node, visitor: Visitor): Shift.Node;
 
   /**
    * The current node.
    */
-  current(): ESTree.Node;
+  current(): Shift.Node;
 
   /**
    * The type of current node.
@@ -33,7 +33,7 @@ export class Controller {
   /**
    * An array of parent elements.
    */
-  parents(): ESTree.Node[];
+  parents(): Shift.Node[];
 
   /**
    * Notify the controller to break the traversals, skip the child nodes of current node or remove the
@@ -57,7 +57,7 @@ export class Controller {
   remove(): void;
 }
 
-export function traverse(root: ESTree.Node, visitor: Visitor): void;
+export function traverse(root: Shift.Node, visitor: Visitor): void;
 
 export type NodeType =
   | "AssignmentExpression"
@@ -141,20 +141,20 @@ export interface Visitor {
   enter?:
     | ((
         this: Controller,
-        node: ESTree.Node,
-        parent: ESTree.Node | null,
-      ) => VisitorOption | ESTree.Node | void)
+        node: Shift.Node,
+        parent: Shift.Node | null,
+      ) => VisitorOption | Shift.Node | void)
     | undefined;
 
   leave?:
     | ((
         this: Controller,
-        node: ESTree.Node,
-        parent: ESTree.Node | null,
-      ) => VisitorOption | ESTree.Node | void)
+        node: Shift.Node,
+        parent: Shift.Node | null,
+      ) => VisitorOption | Shift.Node | void)
     | undefined;
 
-  fallback?: "iteration" | ((this: Controller, node: ESTree.Node) => string[]) | undefined;
+  fallback?: "iteration" | ((this: Controller, node: Shift.Node) => string[]) | undefined;
 
   keys?: Record<string, string[]> | undefined;
 }
