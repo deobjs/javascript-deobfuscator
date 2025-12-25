@@ -151,9 +151,9 @@ VisitorKeys = {
 };
 
 // unique id
-const BREAK = Symbol.for("estraverse.BREAK");
-const SKIP = Symbol.for("estraverse.SKIP");
-const REMOVE = Symbol.for("estraverse.REMOVE");
+const BREAK = Symbol("BREAK");
+const SKIP = Symbol("SKIP");
+const REMOVE = Symbol("REMOVE");
 
 class Reference {
   constructor(parent, key) {
