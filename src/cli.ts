@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-import { deobfuscate } from "./index";
-import * as fs from "node:fs";
 import { program } from "commander";
+import * as fs from "node:fs";
+
+import { deobfuscate } from "./index";
 
 program
   .description("Deobfuscate a javascript file")

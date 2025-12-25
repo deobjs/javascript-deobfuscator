@@ -1,9 +1,10 @@
+import { codeGen } from "ben-sb-shift-codegen";
 import * as Shift from "shift-ast";
 import { parseScript } from "shift-parser";
-import { codeGen } from "ben-sb-shift-codegen";
-import { traverse } from "../../helpers/traverse";
-import TraversalHelper from "../../helpers/traversalHelper";
 import { v4 as uuid } from "uuid";
+
+import TraversalHelper from "../../helpers/traversalHelper";
+import { traverse } from "../../helpers/traverse";
 import Scope from "../../scope/scope";
 
 export default class ProxyFunction {

@@ -1,9 +1,10 @@
-import Modification from "../../modification";
 import * as Shift from "shift-ast";
-import { traverse } from "../../helpers/traverse";
-import Array from "./array";
+
 import TraversalHelper from "../../helpers/traversalHelper";
+import { traverse } from "../../helpers/traverse";
+import Modification from "../../modification";
 import Scope, { ScopeType } from "../../scope/scope";
+import Array from "./array";
 
 export default class ArrayUnpacker extends Modification {
   private readonly scopeTypes = new Set(["Block", "FunctionBody"]);

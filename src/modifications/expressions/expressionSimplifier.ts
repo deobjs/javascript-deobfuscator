@@ -1,7 +1,8 @@
-import Modification from "../../modification";
 import * as Shift from "shift-ast";
-import { traverse } from "../../helpers/traverse";
+
 import TraversalHelper from "../../helpers/traversalHelper";
+import { traverse } from "../../helpers/traverse";
+import Modification from "../../modification";
 
 export default class ExpressionSimplifier extends Modification {
   private readonly types = new Set(["BinaryExpression", "UnaryExpression"]);

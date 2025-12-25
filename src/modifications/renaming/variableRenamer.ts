@@ -1,10 +1,11 @@
-import Modification from "../../modification";
 import * as Shift from "shift-ast";
+
 import { traverse } from "../../helpers/traverse";
-import { blockScopedTypes, Variable } from "./variable";
-import names from "./names.json";
-import NameMapping from "./nameMapping";
+import Modification from "../../modification";
 import Scope, { ScopeType } from "../../scope/scope";
+import NameMapping from "./nameMapping";
+import names from "./names.json";
+import { blockScopedTypes, Variable } from "./variable";
 
 export default class VariableRenamer extends Modification {
   private globalScope: Scope<Variable>;

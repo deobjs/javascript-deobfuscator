@@ -1,10 +1,11 @@
-import Modification from "../../modification";
 import * as Shift from "shift-ast";
-import { traverse } from "../../helpers/traverse";
-import TraversalHelper from "../../helpers/traversalHelper";
-import ProxyFunction from "./proxyFunction";
+
 import { Node, Edge, Graph } from "../../graph";
+import TraversalHelper from "../../helpers/traversalHelper";
+import { traverse } from "../../helpers/traverse";
+import Modification from "../../modification";
 import Scope, { ScopeType } from "../../scope/scope";
+import ProxyFunction from "./proxyFunction";
 
 export default class ProxyRemover extends Modification {
   private readonly scopeTypes = new Set(["Block", "FunctionBody"]);

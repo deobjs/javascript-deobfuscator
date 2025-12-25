@@ -1,16 +1,19 @@
-import { parseModule, parseScript } from "shift-parser";
 import type * as Shift from "shift-ast";
+
 import { codeGen, FormattedCodeGen } from "ben-sb-shift-codegen";
-import Modification from "./modification";
-import ProxyRemover from "./modifications/proxies/proxyRemover";
-import ExpressionSimplifier from "./modifications/expressions/expressionSimplifier";
-import ArrayUnpacker from "./modifications/arrays/arrayUnpacker";
-import PropertySimplifier from "./modifications/properties/propertySimplifier";
-import CleanupHelper from "./helpers/cleanupHelper";
+import { parseModule, parseScript } from "shift-parser";
+
 import type Config from "./config";
-import VariableRenamer from "./modifications/renaming/variableRenamer";
+
+import CleanupHelper from "./helpers/cleanupHelper";
+import Modification from "./modification";
+import ArrayUnpacker from "./modifications/arrays/arrayUnpacker";
 import DeadBranchRemover from "./modifications/branches/deadBranchRemover";
+import ExpressionSimplifier from "./modifications/expressions/expressionSimplifier";
 import StringDecoder from "./modifications/expressions/stringDecoder";
+import PropertySimplifier from "./modifications/properties/propertySimplifier";
+import ProxyRemover from "./modifications/proxies/proxyRemover";
+import VariableRenamer from "./modifications/renaming/variableRenamer";
 
 const defaultConfig: Config = {
   verbose: false,

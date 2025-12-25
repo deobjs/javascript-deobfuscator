@@ -1,7 +1,8 @@
 import { describe, expect, test } from "bun:test";
-import { deobfuscate } from "../src";
 import * as fs from "node:fs";
 import * as path from "node:path";
+
+import { deobfuscate } from "../src";
 
 function loadFixture(name: string): string {
   return fs.readFileSync(path.join(import.meta.dir, "fixtures", name, "input.js"), "utf-8");

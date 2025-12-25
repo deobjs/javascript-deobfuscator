@@ -1,7 +1,8 @@
-import Modification from "../../modification";
 import * as Shift from "shift-ast";
-import { traverse } from "../../helpers/traverse";
+
 import TraversalHelper from "../../helpers/traversalHelper";
+import { traverse } from "../../helpers/traverse";
+import Modification from "../../modification";
 
 /**
  * This transformation recovers strings which have obfuscated via various techniques.

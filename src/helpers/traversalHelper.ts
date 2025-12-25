@@ -1,5 +1,6 @@
-import { traverse } from "./traverse";
 import * as Shift from "shift-ast";
+
+import { traverse } from "./traverse";
 
 export default class TraversalHelper {
   /**
